@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>持续翻阅·ayx · 杂志视角</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f4f0ec;
+            font-family: 'Georgia', 'Times New Roman', '宋体', serif;
+            color: #2a2826;
+            line-height: 1.7;
+        }
+
+        .magazine-wrapper {
+            max-width: 960px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        /* —— 深色头图 —— */
+        .hero {
+            background: #1b1b1b;
+            padding: 3.6rem 2rem 3rem 2rem;
+            text-align: center;
+            border-bottom: 6px solid #b88b4a;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            color: #efe6d8;
+            margin-bottom: 0.3rem;
+            text-transform: none;
+        }
+
+        .hero .subhead {
+            font-size: 1.1rem;
+            color: #b99f7a;
+            letter-spacing: 2px;
+            margin-top: 0.4rem;
+            font-style: italic;
+        }
+
+        .hero .divider-line {
+            width: 60px;
+            height: 1px;
+            background: #b88b4a;
+            margin: 1.5rem auto 0.8rem auto;
+        }
+
+        .hero .hero-note {
+            font-size: 0.9rem;
+            color: #a0907e;
+            max-width: 480px;
+            margin: 1.2rem auto 0;
+            line-height: 1.6;
+        }
+
+        /* —— 正文区域 —— */
+        .content {
+            padding: 2.8rem 2.5rem 3rem 2.5rem;
+        }
+
+        .section-block {
+            margin-bottom: 2.2rem;
+        }
+
+        .section-block:last-of-type {
+            margin-bottom: 1.8rem;
+        }
+
+        .section-block h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #3f3b35;
+            border-left: 4px solid #b88b4a;
+            padding-left: 1rem;
+            margin-bottom: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .section-block p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+        }
+
+        .highlight-link {
+            color: #8b6f41;
+            text-decoration: none;
+            border-bottom: 1px dashed #b88b4a;
+            padding-bottom: 0.1rem;
+            transition: border 0.2s, color 0.2s;
+        }
+
+        .highlight-link:hover {
+            color: #543f26;
+            border-bottom: 1px solid #543f26;
+        }
+
+        .pull-quote {
+            font-style: italic;
+            color: #5b4d3b;
+            background: #f8f4ef;
+            padding: 1.2rem 1.8rem;
+            margin: 1.8rem 0 1.8rem 0;
+            border-left: 4px solid #cfb185;
+            font-size: 1.05rem;
+        }
+
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 2rem;
+            margin: 1.6rem 0 1rem 0;
+        }
+
+        .feature-item {
+            flex: 1 1 160px;
+            background: #faf8f5;
+            padding: 1.2rem 1rem 0.8rem 1rem;
+            border-radius: 4px;
+            border-bottom: 2px solid #e2d6c0;
+        }
+
+        .feature-item .num {
+            display: inline-block;
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #b88b4a;
+            margin-right: 0.5rem;
+            line-height: 1;
+        }
+
+        .feature-item p {
+            margin: 0.2rem 0 0.2rem 0;
+            font-size: 0.95rem;
+        }
+
+        /* —— FAQ 摘要段落 —— */
+        .faq-mini {
+            margin: 2rem 0 1.2rem 0;
+            padding: 1rem 0;
+            border-top: 1px solid #e1d9ce;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.6rem;
+        }
+
+        .faq-mini summary {
+            cursor: pointer;
+            font-weight: 500;
+            color: #3f3b35;
+            padding: 0.3rem 0;
+            letter-spacing: 0.3px;
+        }
+
+        .faq-mini summary:hover {
+            color: #8b6f41;
+        }
+
+        .faq-mini details p {
+            margin: 0.5rem 0 0.8rem 1.5rem;
+            color: #514d46;
+            font-size: 0.95rem;
+        }
+
+        /* —— 页尾提示 —— */
+        .footer-note {
+            background: #f0ece5;
+            padding: 1.8rem 2.5rem;
+            text-align: center;
+            border-top: 1px solid #ddd6c9;
+            color: #4f4940;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        .footer-note a {
+            color: #8b6f41;
+            text-decoration: none;
+            border-bottom: 1px dotted #b88b4a;
+        }
+
+        .footer-note a:hover {
+            color: #2f281e;
+            border-bottom: 1px solid #2f281e;
+        }
+
+        .footer-note .small-meta {
+            display: block;
+            margin-top: 0.8rem;
+            font-size: 0.8rem;
+            color: #8f867a;
+        }
+
+        /* —— 响应式 —— */
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            .hero .subhead {
+                font-size: 0.95rem;
+            }
+            .content {
+                padding: 2rem 1.2rem 2.5rem 1.2rem;
+            }
+            .feature-grid {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .feature-item {
+                flex: 1 1 auto;
+            }
+            .footer-note {
+                padding: 1.4rem 1rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero {
+                padding: 2.4rem 1rem 2rem 1rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+            .section-block h2 {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="magazine-wrapper">
+
+    <!-- 深色头图 -->
+    <div class="hero">
+        <h1>ayx · 留白</h1>
+        <div class="subhead">一份安静的刊物式指引</div>
+        <div class="divider-line"></div>
+        <div class="hero-note">
+            不是每一次打开都需要目的，有时只是熟悉的光标落回同一个地方。
+        </div>
+    </div>
+
+    <!-- 正文 -->
+    <div class="content">
+
+        <!-- 第一段：再次访问 -->
+        <div class="section-block">
+            <h2>再次落脚</h2>
+            <p>
+                网络上总有一些域名，你第一次记下时未必觉得特别，但后来却会反复输入。
+                <a href="https://zhs1-ayx.com" class="highlight-link">ayx</a> 就是这样的地方——没有喧闹的弹窗，也没有紧迫的倒计时。它更像一个定期更新的书架，等你偶尔踱步过来，看看有没有新的折页。
+            </p>
+            <p>
+                很多人第一次访问后并没有立刻收藏，而是隔了几周又凭着记忆输入。那种「依然还在，且样子熟悉」的感觉，比任何欢迎语都让人安心。
+            </p>
+        </div>
+
+        <!-- 第二段：收藏与持续关注 -->
+        <div class="section-block">
+            <h2>收藏夹里的坐标</h2>
+            <p>
+                浏览器书签栏的空间有限，但总有几个位置留给那些「不一定每天看，但不想丢掉」的站点。把 <a href="https://zhs1-ayx.com" class="highlight-link">ayx</a> 放进收藏夹，相当于在信息流里锚定了一个安静的角落。
+            </p>
+            <p>
+                持续关注并不等于频繁刷新。有些页面适合定期回访，看它的栏目如何随着季节微调，看它的文字风格是否有了新的偏向。这种缓慢的变化，反而比即时推送更有味道。
+            </p>
+
+            <!-- 特点卡片（杂志式小网格） -->
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <span class="num">·</span> 无过度推送
+                    <p style="color:#6b6257;">不打扰是基本的礼仪</p>
+                </div>
+                <div class="feature-item">
+                    <span class="num">·</span> 内容沉淀
+                    <p style="color:#6b6257;">每次回访都有新的发现</p>
+                </div>
+                <div class="feature-item">
+                    <span class="num">·</span> 界面克制
+                    <p style="color:#6b6257;">留白让阅读更专注</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第三段：场景与节奏 -->
+        <div class="section-block">
+            <h2>适合的阅读场景</h2>
+            <p>
+                午休间隙、通勤路上、或者睡前整理思绪的时刻——你不需要马上做出任何决定。打开 <a href="https://zhs1-ayx.com" class="highlight-link">ayx</a>，像翻开一本没有页码的杂志，从上一次停下的地方继续。
+            </p>
+
+            <!-- 摘录式文字 -->
+            <div class="pull-quote">
+                “收藏不是囤积，而是为未来的自己留一条熟悉的路。”
+            </div>
+
+            <p>
+                有些人习惯每月初来看一眼，有些人则是在搜索某个话题时偶然重新发现。无论是哪种方式，<a href="https://zhs1-ayx.com" class="highlight-link">ayx</a> 都保持着自己的更新节奏，不疾不徐。
+            </p>
+        </div>
+
+        <!-- FAQ 摘要（杂志常见栏目） -->
+        <div class="faq-mini">
+            <details>
+                <summary>▸ 这个页面会经常变化吗？</summary>
+                <p>是的，结构和内容会不定期调整，但不会突然改版到认不出来。保留基本的熟悉感。</p>
+            </details>
+            <details>
+                <summary>▸ 我需要注册或登录吗？</summary>
+                <p>不需要。直接访问即可浏览，没有强制注册环节。你完全可以选择自己的节奏。</p>
+            </details>
+            <details>
+                <summary>▸ 如果忘记了网址怎么办？</summary>
+                <p>可以记下现在的链接，或者通过熟悉的搜索线索找回。但最好的方式就是现在收藏它。</p>
+            </details>
+        </div>
+
+    </div>
+
+    <!-- 页尾访问提示 -->
+    <div class="footer-note">
+        <p>无论你第几次来到这里，都希望它看起来像一本旧杂志——<br>翻开时有熟悉的气味，也有未曾读过的段落。</p>
+        <p style="margin-top:1rem;">
+            <a href="https://zhs1-ayx.com">ayx</a> · 持续翻阅
+        </p>
+        <span class="small-meta">页面结构随季调整 · 内容独立叙述</span>
+    </div>
+
+</div>
+
+</body>
+</html>
